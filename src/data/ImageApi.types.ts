@@ -23,6 +23,8 @@ export interface IImageItem {
   previewURL: string;
   /** Width of image in previewURL */
   previewWidth: number;
+  /** Comma (,) separated tags*/
+  tags: string;
   /** Height of image in webformatURL */
   webformatHeight: number;
   /** 
