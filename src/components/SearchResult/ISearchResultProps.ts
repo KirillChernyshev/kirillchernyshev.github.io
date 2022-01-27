@@ -1,5 +1,5 @@
 import { IImageItem } from "../../data/ImageApi.types";
 
-export interface IImageResultsProps {
+export interface ISearchResultProps {
   items: IImageItem[];
 }

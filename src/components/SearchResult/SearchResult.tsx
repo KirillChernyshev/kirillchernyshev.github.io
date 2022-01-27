@@ -1,9 +1,9 @@
 import React from 'react';
 import ImageList from '@mui/material/ImageList';
 import ImageListItem from '@mui/material/ImageListItem';
-import { IImageResultsProps } from './IImageResultsProps';
+import { ISearchResultProps } from './ISearchResultProps';
 
-export default function ImageResults({items}: IImageResultsProps) {
+export default function SearchResult({items}: ISearchResultProps) {
   return (
     <ImageList variant="masonry" cols={3} gap={4}>
       {items.map((item) => (

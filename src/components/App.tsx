@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { ImageApi } from '../data/ImageApi';
 import { IImageItem } from '../data/ImageApi.types';
 import './App.scss';
-import ImageResults from './ImageResults/ImageResults';
+import SearchResult from './SearchResult/SearchResult';
 import SearchInput from './SearchInput/SearchInput';
 
 export default function App() {
@@ -20,7 +20,7 @@ export default function App() {
   return (
     <div className="App">
       <SearchInput onChange={(value) => setQuery(value)}/>
-      <ImageResults items={items}/>
+      <SearchResult items={items}/>
     </div>
   );
 }
