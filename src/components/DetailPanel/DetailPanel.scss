@@ -1,0 +1,20 @@
+@import '../../brandbook.scss';
+
+.DetailPanel {
+  flex-grow: 1;
+  flex-basis: 50%;
+  padding: 50px 20px 20px;
+  background-color: $mainColor;
+  position: relative;
+  h3 {
+    color: $fifthColor;
+  }
+}
+button.DetailPanel--close {
+  position: absolute;
+  right: 5px;
+  top: 5px;
+  svg {
+    color: $fifthColor;
+  }
+}

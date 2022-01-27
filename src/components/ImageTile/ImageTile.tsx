@@ -5,10 +5,16 @@ import ImageListItem from '@mui/material/ImageListItem';
 import CardActionArea from '@mui/material/CardActionArea';
 import './ImageTile.scss';
 
-export default function ImageTile({alt, height, id, src, width}: IImageTileProps) {
+export default function ImageTile({alt, height, id, onClick, src, width}: IImageTileProps) {
+  const handleClick = () => {
+    if (onClick) {
+      onClick(id);
+    }
+  }
+  
   return (
     <Card className="ImageTile">
-      <CardActionArea>
+      <CardActionArea onClick={handleClick}>
         <figure>
           <ImageListItem key={id}>
             <img

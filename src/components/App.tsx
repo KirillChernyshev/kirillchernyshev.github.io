@@ -5,11 +5,32 @@ import './App.scss';
 import SearchResult from './SearchResult/SearchResult';
 import SearchInput from './SearchInput/SearchInput';
 import PixabayLogo from './PixabayLogo/PixabayLogo';
+import DetailPanel from './DetailPanel/DetailPanel';
 
 export default function App() {
   const [query, setQuery] = useState('');
   const [items, setItems] = useState<IImageItem[]>([]);
+  const [selectedItem, setSelectedItem] = useState<IImageItem | undefined>(undefined);
+  
+  const handleDetailPanelClose = () => {
+    setSelectedItem(undefined);
+  }
 
+  const handleSearchResultClick = (id: number) => {
+    console.log('handleSearch')
+    const item = items.filter(x => x.id === id)[0];
+    setSelectedItem(item);
+  };
+  
+  const detailPanel = selectedItem ? (
+    <DetailPanel
+      mainItem={selectedItem}
+      onCloseClick={handleDetailPanelClose}
+      onItemClick={handleSearchResultClick}
+      relatedItems={[]}
+    />
+  ) : undefined;
+  
   useEffect(() => {
     if (query === '') return;
 
@@ -24,7 +45,10 @@ export default function App() {
         <SearchInput onChange={(value) => setQuery(value)}/>
         <PixabayLogo />
       </header>
-      <SearchResult items={items}/>
+      <main>
+        <SearchResult items={items} onClick={handleSearchResultClick}/>
+        {detailPanel}
+      </main>
     </div>
   );
 }
