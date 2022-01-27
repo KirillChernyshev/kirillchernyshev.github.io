@@ -1,0 +1,26 @@
+.PixabayLogo {
+  margin: 3px 15px 5px 0;
+  font-size: 12px;
+  line-height: 1.7;
+  color: #555;
+  display: block;
+  float: left;
+  padding: 9px 12px 6px;
+  border: 1px solid #ccc;
+  text-decoration: none;
+  width: 76px;
+  opacity: 1;
+  transition: opacity 0.2s;
+  &:hover {
+    opacity: 0.7;
+  }
+  i {
+    display: block;
+    width: 68px;
+    height: 18px;
+    overflow: hidden;
+  }
+  span {
+    white-space: nowrap;
+  }
+}

@@ -4,13 +4,14 @@ import { IImageItem } from '../data/ImageApi.types';
 import './App.scss';
 import SearchResult from './SearchResult/SearchResult';
 import SearchInput from './SearchInput/SearchInput';
+import PixabayLogo from './PixabayLogo/PixabayLogo';
 
 export default function App() {
   const [query, setQuery] = useState('');
   const [items, setItems] = useState<IImageItem[]>([]);
 
   useEffect(() => {
-    if (query === '') return console.log('items', []);
+    if (query === '') return;
 
     ImageApi.getItems(query).then(response => {
       setItems(response.hits);
@@ -19,7 +20,10 @@ export default function App() {
 
   return (
     <div className="App">
-      <SearchInput onChange={(value) => setQuery(value)}/>
+      <header>
+        <SearchInput onChange={(value) => setQuery(value)}/>
+        <PixabayLogo />
+      </header>
       <SearchResult items={items}/>
     </div>
   );
