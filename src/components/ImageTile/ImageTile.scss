@@ -1,0 +1,23 @@
+@import '../../brandbook.scss';
+
+.ImageTile {
+  figure {
+    margin: 0;
+    position: relative;
+  }
+  figcaption {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 4px;
+    visibility: hidden;
+    background-color: $mainColor;
+    color: $fifthColor;
+    padding: 4px;
+  }
+  &:hover {
+    figcaption {
+      visibility: visible;
+    }
+  }
+}
