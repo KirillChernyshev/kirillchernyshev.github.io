@@ -12,7 +12,7 @@ export class ImageApi {
     const response = await axios.get(this.apiEndpoint, {
       params: {
         key: this.apiKey,
-        per_page: 200,
+        per_page: 30,
         q: query
       }
     });

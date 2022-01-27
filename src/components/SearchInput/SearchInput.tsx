@@ -1,13 +1,20 @@
 import Input from "@mui/material/Input";
 import InputAdornment from "@mui/material/InputAdornment";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Search from "@mui/icons-material/Search";
 import { ISearchInputProps } from "./ISearchInputProps";
+import { useDebounce } from "use-debounce";
 
-export default function SearchInput({onChange}: ISearchInputProps) {
+export default function SearchInput({delay = 400, onChange}: ISearchInputProps) {
+  const [text, setText] = useState('');
+  const [debounceValue] = useDebounce(text, delay);
   const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    onChange(e.target.value);
+    setText(e.target.value);
   };
+
+  useEffect(() => {
+    onChange(debounceValue);
+  }, [debounceValue, onChange]);
 
   return (
     <>
