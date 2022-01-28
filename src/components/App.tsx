@@ -7,6 +7,7 @@ import SearchInput from './SearchInput/SearchInput';
 import PixabayLogo from './PixabayLogo/PixabayLogo';
 import DetailPanel from './DetailPanel/DetailPanel';
 import AppLogo from './AppLogo/AppLogo';
+import Greeting from './Greeting/Greeting';
 
 export default function App() {
   const [query, setQuery] = useState('');
@@ -76,7 +77,9 @@ export default function App() {
         <SearchInput key={query} onChange={handleSearchInputChange} query={query}/>
       </header>
       <main>
-        <SearchResult items={items} onClick={handleSearchResultClick}/>
+        {query ? 
+        <SearchResult items={items} onClick={handleSearchResultClick}/> :
+        <Greeting/>}
         {detailPanel}
       </main>
       <footer>
