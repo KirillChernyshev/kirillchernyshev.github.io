@@ -1,0 +1,22 @@
+@import '../../brandbook.scss';
+
+.SearchInput {
+  flex-basis: 100%;
+  display: flex;
+  align-items: center;
+  margin-right: 10px;
+  .SearchInput--control {
+    border: none;
+    background-color: $secondColor;
+  }
+  svg {
+    color: $fifthColor;
+  }
+  input {
+    color: $fifthColor;
+    padding: 10px 0;
+  }
+  fieldset {
+    border: none;
+  }
+}

@@ -1,8 +1,21 @@
+@import '../brandbook.scss';
+
 .App {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
   header {
     display: flex;
+    background-color: $mainColor;
+    color: $fifthColor;
+    min-height: 60px;
+    border-bottom: 0.5px solid $thirdColor;
   }
   main {
+    flex-basis: 100%;
     display: flex;
+  }
+  footer {
+    border-top: 0.5px solid $fourthColor;
   }
 }

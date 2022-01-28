@@ -6,6 +6,7 @@ import SearchResult from './SearchResult/SearchResult';
 import SearchInput from './SearchInput/SearchInput';
 import PixabayLogo from './PixabayLogo/PixabayLogo';
 import DetailPanel from './DetailPanel/DetailPanel';
+import AppLogo from './AppLogo/AppLogo';
 
 export default function App() {
   const [query, setQuery] = useState('');
@@ -71,13 +72,16 @@ export default function App() {
   return (
     <div className="App">
       <header>
+        <AppLogo/>
         <SearchInput key={query} onChange={handleSearchInputChange} query={query}/>
-        <PixabayLogo />
       </header>
       <main>
         <SearchResult items={items} onClick={handleSearchResultClick}/>
         {detailPanel}
       </main>
+      <footer>
+        <PixabayLogo/>
+      </footer>
     </div>
   );
 }

@@ -1,0 +1,14 @@
+@import '../../brandbook.scss';
+
+.AppLogo {
+  font-family: monospace;
+  font-size: 24px;
+  width: 220px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  div {
+    position: relative;
+    top: -2px;
+  }
+}

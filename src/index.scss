@@ -1,10 +1,25 @@
+@import './brandbook.scss';
+
+html {
+  height: 100%;
+}
 body {
+  height: 100%;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: $fontFamily;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: $fifthColor;
+  color: $mainColor;
+  a {
+    text-decoration: none;
+    &:visited {
+      color: inherit;
+    }
+  }
+  & > div {
+    height: 100%;
+  }
 }
 
 code {

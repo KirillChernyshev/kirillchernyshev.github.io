@@ -1,9 +1,10 @@
-import Input from "@mui/material/Input";
 import InputAdornment from "@mui/material/InputAdornment";
 import React, { useEffect, useState } from "react";
+import './SearchInput.scss';
 import Search from "@mui/icons-material/Search";
 import { ISearchInputProps } from "./ISearchInputProps";
 import { useDebounce } from "use-debounce";
+import OutlinedInput from "@mui/material/OutlinedInput";
 
 export default function SearchInput({delay = 400, onChange, query = ''}: ISearchInputProps) {
   const [text, setText] = useState(query);
@@ -22,8 +23,9 @@ export default function SearchInput({delay = 400, onChange, query = ''}: ISearch
   };
 
   return (
-    <>
-      <Input
+    <div className="SearchInput">
+      <OutlinedInput
+        className="SearchInput--control"
         fullWidth
         onChange={handleChange}
         placeholder="Type and search Images"
@@ -34,6 +36,6 @@ export default function SearchInput({delay = 400, onChange, query = ''}: ISearch
         }
         value={text}
       />
-    </>
+    </div>
   );
 }

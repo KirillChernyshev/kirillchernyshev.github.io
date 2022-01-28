@@ -6,19 +6,19 @@ import './PixabayLogo.scss';
  */
 export default function PixabayLogo() {
   return (
-    <a
-      className='PixabayLogo'
-      href="https://pixabay.com/"
-    >
-      <i>
-        <img
-          alt="pixabay.com logo"
-          height="18px"
-          src="https://pixabay.com/static/img/logo.svg"
-          width="94px"
-        />
-      </i>
-      <span>Free Images</span>
-    </a>
+    <div className='PixabayLogo'>
+      <span className='PixabayLogo--text'>Powered by </span>
+      <a href="https://pixabay.com/">
+        <i>
+          <img
+            alt="pixabay.com logo"
+            height="18px"
+            src="https://pixabay.com/static/img/logo.svg"
+            width="94px"
+          />
+        </i>
+        <span>Free Images</span>
+      </a>
+    </div>
   );
 }
