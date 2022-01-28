@@ -19,10 +19,8 @@ export default function ImageTile({alt, height, id, onClick, src, width}: IImage
           <ImageListItem key={id}>
             <img
               alt={alt}
-              height={height}
               loading="lazy"
               src={src}
-              width={width}
             />
           </ImageListItem>
           <figcaption>
