@@ -43,9 +43,19 @@ export default function App() {
     setSelectedItem(item);
   };
 
+  const handleSearchInputChange = (value: string) => setQuery(value);
+
   const handleSearchResultClick = (id: number) => {
     const item = items.filter(x => x.id === id)[0];
     setSelectedItem(item);
+  };
+
+  const handleSeeMoreClick = () => {
+    if (selectedItem) {
+      console.log('handleSeeMoreClick', selectedItem.tags);
+      setQuery(selectedItem.tags);
+      setSelectedItem(undefined);
+    }
   };
   
   const detailPanel = selectedItem ? (
@@ -53,6 +63,7 @@ export default function App() {
       mainItem={selectedItem}
       onCloseClick={handleDetailPanelClose}
       onItemClick={handleRelatedItemClick}
+      onSeeMoreClick={handleSeeMoreClick}
       relatedItems={relatedItems}
     />
   ) : undefined;
@@ -60,7 +71,7 @@ export default function App() {
   return (
     <div className="App">
       <header>
-        <SearchInput onChange={(value) => setQuery(value)}/>
+        <SearchInput key={query} onChange={handleSearchInputChange} query={query}/>
         <PixabayLogo />
       </header>
       <main>

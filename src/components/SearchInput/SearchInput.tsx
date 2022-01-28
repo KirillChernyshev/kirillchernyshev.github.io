@@ -5,22 +5,26 @@ import Search from "@mui/icons-material/Search";
 import { ISearchInputProps } from "./ISearchInputProps";
 import { useDebounce } from "use-debounce";
 
-export default function SearchInput({delay = 400, onChange}: ISearchInputProps) {
-  const [text, setText] = useState('');
+export default function SearchInput({delay = 400, onChange, query = ''}: ISearchInputProps) {
+  const [text, setText] = useState(query);
   const [debounceValue] = useDebounce(text, delay);
-  const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setText(e.target.value);
-  };
 
   useEffect(() => {
     onChange(debounceValue);
   }, [debounceValue, onChange]);
 
+  useEffect(() => {
+    setText(query);
+  }, [query]);
+
+  const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    setText(e.target.value);
+  };
+
   return (
     <>
       <Input
         fullWidth
-        id="input-with-icon-adornment"
         onChange={handleChange}
         placeholder="Type and search Images"
         startAdornment={
@@ -28,6 +32,7 @@ export default function SearchInput({delay = 400, onChange}: ISearchInputProps) 
             <Search />
           </InputAdornment>
         }
+        value={text}
       />
     </>
   );
