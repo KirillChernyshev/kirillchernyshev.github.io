@@ -10,14 +10,19 @@ import DetailPanel from './DetailPanel/DetailPanel';
 export default function App() {
   const [query, setQuery] = useState('');
   const [items, setItems] = useState<IImageItem[]>([]);
+  const [relatedItems, setRelatedItems] = useState<IImageItem[]>([]);
   const [selectedItem, setSelectedItem] = useState<IImageItem | undefined>(undefined);
   
   const handleDetailPanelClose = () => {
     setSelectedItem(undefined);
   }
 
+  const handleRelatedItemClick = (id: number) => {
+    const item = relatedItems.filter(x => x.id === id)[0];
+    setSelectedItem(item);
+  };
+
   const handleSearchResultClick = (id: number) => {
-    console.log('handleSearch')
     const item = items.filter(x => x.id === id)[0];
     setSelectedItem(item);
   };
@@ -26,11 +31,12 @@ export default function App() {
     <DetailPanel
       mainItem={selectedItem}
       onCloseClick={handleDetailPanelClose}
-      onItemClick={handleSearchResultClick}
-      relatedItems={[]}
+      onItemClick={handleRelatedItemClick}
+      relatedItems={relatedItems}
     />
   ) : undefined;
   
+  /** search images */
   useEffect(() => {
     if (query === '') return;
 
@@ -38,6 +44,18 @@ export default function App() {
       setItems(response.hits);
     });
   }, [query]);
+  
+  /** search related images */
+  useEffect(() => {
+    if (!selectedItem) {
+      setRelatedItems([]);
+      return;
+    }
+
+    ImageApi.getItems(selectedItem.tags).then(response => {
+      setRelatedItems(response.hits);
+    })
+  }, [selectedItem]);
 
   return (
     <div className="App">
