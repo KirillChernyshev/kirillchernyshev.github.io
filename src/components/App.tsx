@@ -13,6 +13,27 @@ export default function App() {
   const [relatedItems, setRelatedItems] = useState<IImageItem[]>([]);
   const [selectedItem, setSelectedItem] = useState<IImageItem | undefined>(undefined);
   
+  /** search images */
+  useEffect(() => {
+    if (query === '') return;
+
+    ImageApi.getItems(query).then(response => {
+      setItems(response.hits);
+    });
+  }, [query]);
+  
+  /** search related images */
+  useEffect(() => {
+    if (!selectedItem) {
+      setRelatedItems([]);
+      return;
+    }
+
+    ImageApi.getItems(selectedItem.tags, 9).then(response => {
+      setRelatedItems(response.hits);
+    })
+  }, [selectedItem]);
+  
   const handleDetailPanelClose = () => {
     setSelectedItem(undefined);
   }
@@ -35,27 +56,6 @@ export default function App() {
       relatedItems={relatedItems}
     />
   ) : undefined;
-  
-  /** search images */
-  useEffect(() => {
-    if (query === '') return;
-
-    ImageApi.getItems(query).then(response => {
-      setItems(response.hits);
-    });
-  }, [query]);
-  
-  /** search related images */
-  useEffect(() => {
-    if (!selectedItem) {
-      setRelatedItems([]);
-      return;
-    }
-
-    ImageApi.getItems(selectedItem.tags).then(response => {
-      setRelatedItems(response.hits);
-    })
-  }, [selectedItem]);
 
   return (
     <div className="App">
