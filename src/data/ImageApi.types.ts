@@ -17,6 +17,8 @@ export interface IImageItem {
   imageWidth: number;
   /** Scaled image with a maximum width/height of 1280px. */
   largeImageURL: string;
+  /** A pixabay page with image */
+  pageURL: string;
   /** Height of image in previewURL */
   previewHeight: number;
   /** Low resolution images with a maximum width or height of 150 px. */
@@ -25,6 +27,8 @@ export interface IImageItem {
   previewWidth: number;
   /** Comma (,) separated tags*/
   tags: string;
+  /** User nickname */
+  user: string;
   /** Height of image in webformatURL */
   webformatHeight: number;
   /** 

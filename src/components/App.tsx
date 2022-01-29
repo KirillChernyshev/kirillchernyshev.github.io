@@ -63,6 +63,7 @@ export default function App() {
       setQuery(selectedItem.tags);
       setSearchInputKey(selectedItem.tags);
       setSelectedItem(null);
+      window.scrollTo(0, 0);
     }
   };
   

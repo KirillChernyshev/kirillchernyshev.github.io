@@ -5,30 +5,42 @@ import ImageListItem from '@mui/material/ImageListItem';
 import CardActionArea from '@mui/material/CardActionArea';
 import './ImageTile.scss';
 
-export default function ImageTile({alt, height, id, onClick, src, width}: IImageTileProps) {
+export default function ImageTile(
+  {addCaption = true, alt, height, id, onClick, src, width}: IImageTileProps
+) {
   const handleClick = () => {
     if (onClick) {
       onClick(id);
     }
   }
+
+  const imageItem = (
+    <ImageListItem key={id} style={{height, width}}>
+      <img
+        alt={alt}
+        loading="lazy"
+        src={src}
+        style={{height, width}}
+      />
+    </ImageListItem>
+  );
   
-  return (
+  return addCaption ? (
     <Card className="ImageTile">
-      <CardActionArea onClick={handleClick}>
+      <CardActionArea onClick={addCaption ? handleClick : undefined}>
         <figure>
-          <ImageListItem key={id} style={{height, width}}>
-            <img
-              alt={alt}
-              loading="lazy"
-              src={src}
-              style={{height, width}}
-            />
-          </ImageListItem>
+          {imageItem}
           <figcaption>
             {alt}
           </figcaption>
         </figure>
       </CardActionArea>
+    </Card>
+  ) : (
+    <Card className="ImageTile">
+      <figure>
+        {imageItem}
+      </figure>
     </Card>
   );
 }
