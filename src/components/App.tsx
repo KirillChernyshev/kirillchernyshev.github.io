@@ -11,6 +11,7 @@ import Greeting from './Greeting/Greeting';
 
 export default function App() {
   const [query, setQuery] = useState('');
+  const [searchInputKey, setSearchInputKey] = useState('');
   const [items, setItems] = useState<IImageItem[]>([]);
   const [relatedItems, setRelatedItems] = useState<IImageItem[]>([]);
   const [selectedItem, setSelectedItem] = useState<IImageItem | null>(null);
@@ -59,8 +60,8 @@ export default function App() {
 
   const handleSeeMoreClick = () => {
     if (selectedItem) {
-      console.log('handleSeeMoreClick', selectedItem.tags);
       setQuery(selectedItem.tags);
+      setSearchInputKey(selectedItem.tags);
       setSelectedItem(null);
     }
   };
@@ -79,7 +80,7 @@ export default function App() {
     <div className="App">
       <header>
         <AppLogo/>
-        <SearchInput key={query} onChange={handleSearchInputChange} query={query}/>
+        <SearchInput key={searchInputKey} onChange={handleSearchInputChange} query={query}/>
       </header>
       <main>
         {query ? 
