@@ -5,15 +5,16 @@ import { ISearchResultProps } from './ISearchResultProps';
 import ImageTile from '../ImageTile/ImageTile';
 import { useGridProps } from '../../hooks/useGridProps';
 
-export default function SearchResult({hasHalfWidth = true, items, onClick}: ISearchResultProps) {
+export default function SearchResult({gap = 4, hasHalfWidth = true, items, onClick}: ISearchResultProps) {
   const rootRef = useRef<HTMLUListElement>(null);
   const [gridProps, setGridProps] = useGridProps(rootRef, hasHalfWidth ? 200 : 320);
 
   useEffect(() => setGridProps(), [hasHalfWidth, setGridProps]);
 
   const tiles = items.map((item) => {
-    const height = gridProps 
-      ? gridProps.columnWidth / item.webformatWidth * item.webformatHeight
+    const width = gridProps ? gridProps.columnWidth - gap : undefined;
+    const height = width 
+      ? width / item.webformatWidth * item.webformatHeight
       : undefined;
       
     return (
@@ -23,7 +24,7 @@ export default function SearchResult({hasHalfWidth = true, items, onClick}: ISea
         id={item.id}
         onClick={onClick}
         src={item.webformatURL}
-        width={gridProps?.columnWidth}
+        width={width}
       />
     );
   });
@@ -32,7 +33,7 @@ export default function SearchResult({hasHalfWidth = true, items, onClick}: ISea
     <ImageList
       className='SearchResult'
       cols={gridProps?.columns}
-      gap={4}
+      gap={gap}
       ref={rootRef}
       variant="masonry"
     >
