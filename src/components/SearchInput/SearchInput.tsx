@@ -5,6 +5,8 @@ import Search from "@mui/icons-material/Search";
 import { ISearchInputProps } from "./ISearchInputProps";
 import { useDebounce } from "use-debounce";
 import OutlinedInput from "@mui/material/OutlinedInput";
+import Close from "@mui/icons-material/Close";
+import IconButton from "@mui/material/IconButton";
 
 export default function SearchInput({delay = 400, onChange, query = ''}: ISearchInputProps) {
   const [text, setText] = useState(query);
@@ -22,6 +24,8 @@ export default function SearchInput({delay = 400, onChange, query = ''}: ISearch
     setText(e.target.value);
   };
 
+  const handleClearClick = () => setText('');
+
   return (
     <div className="SearchInput">
       <OutlinedInput
@@ -32,6 +36,13 @@ export default function SearchInput({delay = 400, onChange, query = ''}: ISearch
         startAdornment={
           <InputAdornment position="start">
             <Search />
+          </InputAdornment>
+        }
+        endAdornment={
+          <InputAdornment position="end">
+            <IconButton onClick={handleClearClick}>
+              <Close />
+            </IconButton>
           </InputAdornment>
         }
         value={text}

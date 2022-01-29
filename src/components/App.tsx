@@ -13,7 +13,7 @@ export default function App() {
   const [query, setQuery] = useState('');
   const [items, setItems] = useState<IImageItem[]>([]);
   const [relatedItems, setRelatedItems] = useState<IImageItem[]>([]);
-  const [selectedItem, setSelectedItem] = useState<IImageItem | undefined>(undefined);
+  const [selectedItem, setSelectedItem] = useState<IImageItem | null>(null);
 
   /** search images */
   useEffect(() => {
@@ -37,7 +37,7 @@ export default function App() {
   }, [selectedItem]);
   
   const handleDetailPanelClose = () => {
-    setSelectedItem(undefined);
+    setSelectedItem(null);
   }
 
   const handleRelatedItemClick = (id: number) => {
@@ -45,7 +45,12 @@ export default function App() {
     setSelectedItem(item);
   };
 
-  const handleSearchInputChange = (value: string) => setQuery(value);
+  const handleSearchInputChange = (value: string) => {
+    setQuery(value);
+    if (!value) {
+      setSelectedItem(null);
+    }
+  }
 
   const handleSearchResultClick = (id: number) => {
     const item = items.filter(x => x.id === id)[0];
@@ -56,11 +61,11 @@ export default function App() {
     if (selectedItem) {
       console.log('handleSeeMoreClick', selectedItem.tags);
       setQuery(selectedItem.tags);
-      setSelectedItem(undefined);
+      setSelectedItem(null);
     }
   };
   
-  const detailPanel = selectedItem ? (
+  const detailPanel = !!selectedItem ? (
     <DetailPanel
       mainItem={selectedItem}
       onCloseClick={handleDetailPanelClose}
@@ -79,7 +84,7 @@ export default function App() {
       <main>
         {query ? 
           <SearchResult
-            hasHalfWidth={selectedItem !== undefined}
+            hasHalfWidth={!!selectedItem}
             items={items}
             onClick={handleSearchResultClick}
           /> :
