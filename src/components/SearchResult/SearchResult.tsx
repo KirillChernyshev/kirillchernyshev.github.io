@@ -16,6 +16,9 @@ export default function SearchResult({gap = 4, hasHalfWidth = true, items, onCli
     const height = width 
       ? width / item.webformatWidth * item.webformatHeight
       : undefined;
+    const src = width && width < 400
+      ? item.webformatURL.replace('_640.', '_340.')
+      : item.webformatURL;
       
     return (
       <ImageTile
@@ -23,7 +26,7 @@ export default function SearchResult({gap = 4, hasHalfWidth = true, items, onCli
         height={height}
         id={item.id}
         onClick={onClick}
-        src={item.webformatURL}
+        src={src}
         width={width}
       />
     );
