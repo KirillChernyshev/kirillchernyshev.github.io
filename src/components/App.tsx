@@ -14,7 +14,7 @@ export default function App() {
   const [items, setItems] = useState<IImageItem[]>([]);
   const [relatedItems, setRelatedItems] = useState<IImageItem[]>([]);
   const [selectedItem, setSelectedItem] = useState<IImageItem | undefined>(undefined);
-  
+
   /** search images */
   useEffect(() => {
     if (query === '') return;
@@ -78,8 +78,12 @@ export default function App() {
       </header>
       <main>
         {query ? 
-        <SearchResult items={items} onClick={handleSearchResultClick}/> :
-        <Greeting/>}
+          <SearchResult
+            hasHalfWidth={selectedItem !== undefined}
+            items={items}
+            onClick={handleSearchResultClick}
+          /> :
+          <Greeting/>}
         {detailPanel}
       </main>
       <footer>
