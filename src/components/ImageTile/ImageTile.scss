@@ -1,9 +1,16 @@
 @import '../../brandbook.scss';
 
-.ImageTile {
+div.ImageTile {
+  border-radius: 0;
+  box-shadow: none;
+  background-color: transparent;
   figure {
+    background-color: transparent;
     margin: 0;
     position: relative;
+    img {
+      background-color: white;
+    }
   }
   figcaption {
     position: absolute;

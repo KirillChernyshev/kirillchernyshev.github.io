@@ -9,7 +9,24 @@ export default function SearchResult({hasHalfWidth = true, items, onClick}: ISea
   const rootRef = useRef<HTMLUListElement>(null);
   const [gridProps, setGridProps] = useGridProps(rootRef, hasHalfWidth ? 200 : 320);
 
-  useEffect(() => setGridProps, [hasHalfWidth, setGridProps]);
+  useEffect(() => setGridProps(), [hasHalfWidth, setGridProps]);
+
+  const tiles = items.map((item) => {
+    const height = gridProps 
+      ? gridProps.columnWidth / item.webformatWidth * item.webformatHeight
+      : undefined;
+      
+    return (
+      <ImageTile
+        alt={item.tags}
+        height={height}
+        id={item.id}
+        onClick={onClick}
+        src={item.webformatURL}
+        width={gridProps?.columnWidth}
+      />
+    );
+  });
   
   return (
     <ImageList
@@ -19,16 +36,7 @@ export default function SearchResult({hasHalfWidth = true, items, onClick}: ISea
       ref={rootRef}
       variant="masonry"
     >
-      {items.map((item) => (
-        <ImageTile
-          alt={item.tags}
-          height={item.webformatHeight}
-          id={item.id}
-          onClick={onClick}
-          src={item.webformatURL}
-          width={item.webformatWidth}
-        />
-      ))}
+      {tiles}
     </ImageList>
   );
 }

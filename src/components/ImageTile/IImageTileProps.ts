@@ -1,8 +1,8 @@
 export interface IImageTileProps {
   alt: string;
-  height: number;
+  height?: number;
   id: number;
   onClick?: (id: number) => void;
   src: string;
-  width: number;
+  width?: number;
 }

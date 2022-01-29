@@ -16,11 +16,12 @@ export default function ImageTile({alt, height, id, onClick, src, width}: IImage
     <Card className="ImageTile">
       <CardActionArea onClick={handleClick}>
         <figure>
-          <ImageListItem key={id}>
+          <ImageListItem key={id} style={{height, width}}>
             <img
               alt={alt}
               loading="lazy"
               src={src}
+              style={{height, width}}
             />
           </ImageListItem>
           <figcaption>
