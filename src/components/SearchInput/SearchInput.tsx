@@ -33,18 +33,18 @@ export default function SearchInput({delay = 400, onChange, query = ''}: ISearch
         fullWidth
         onChange={handleChange}
         placeholder="Type and search Images"
-        startAdornment={
+        startAdornment={(
           <InputAdornment position="start">
             <Search />
           </InputAdornment>
-        }
-        endAdornment={
+        )}
+        endAdornment={text ? (
           <InputAdornment position="end">
             <IconButton onClick={handleClearClick}>
               <Close />
             </IconButton>
           </InputAdornment>
-        }
+        ) : undefined}
         value={text}
       />
     </div>
