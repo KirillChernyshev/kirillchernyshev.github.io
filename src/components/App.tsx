@@ -11,6 +11,7 @@ import Greeting from './Greeting/Greeting';
 
 export default function App() {
   const [query, setQuery] = useState('');
+  const [page, setPage] = useState(1);
   const [searchInputKey, setSearchInputKey] = useState('');
   const [items, setItems] = useState<IImageItem[]>([]);
   const [relatedItems, setRelatedItems] = useState<IImageItem[]>([]);
@@ -20,10 +21,12 @@ export default function App() {
   useEffect(() => {
     if (query === '') return;
 
-    ImageApi.getItems(query).then(response => {
-      setItems(response.hits);
+    ImageApi.getItems(query, page).then(response => {
+      const newItems = page === 1 ? response.hits 
+        : items.concat(response.hits);
+      setItems(newItems);
     });
-  }, [query]);
+  }, [page, query]);
   
   /** search related images */
   useEffect(() => {
@@ -32,7 +35,7 @@ export default function App() {
       return;
     }
 
-    ImageApi.getItems(selectedItem.tags, 9).then(response => {
+    ImageApi.getItems(selectedItem.tags, 1, 9).then(response => {
       setRelatedItems(response.hits);
     })
   }, [selectedItem]);
@@ -47,7 +50,10 @@ export default function App() {
   };
 
   const handleSearchInputChange = (value: string) => {
-    setQuery(value);
+    if (value !== query) {
+      setQuery(value);
+      setPage(1);
+    }
     if (!value) {
       setSelectedItem(null);
     }
@@ -58,9 +64,14 @@ export default function App() {
     setSelectedItem(item);
   };
 
+  const handleMainSeeMoreClick = () => {
+    setPage(page + 1);
+  };
+
   const handleSeeMoreClick = () => {
     if (selectedItem) {
       setQuery(selectedItem.tags);
+      setPage(1);
       setSearchInputKey(selectedItem.tags);
       setSelectedItem(null);
       window.scrollTo(0, 0);
@@ -84,13 +95,16 @@ export default function App() {
         <SearchInput key={searchInputKey} onChange={handleSearchInputChange} query={query}/>
       </header>
       <main>
-        {query ? 
+        {query ? (
           <SearchResult
             hasHalfWidth={!!selectedItem}
             items={items}
             onClick={handleSearchResultClick}
-          /> :
-          <Greeting/>}
+            onSeeMoreClick={handleMainSeeMoreClick}
+            style={!!selectedItem ? {width: '50%'} : undefined}
+          />
+        ) 
+        : <Greeting/>}
         {detailPanel}
       </main>
       <footer>

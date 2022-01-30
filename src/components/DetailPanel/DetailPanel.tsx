@@ -51,7 +51,11 @@ export default function DetailPanel({mainItem, onCloseClick, onItemClick, onSeeM
         <span>Related Images</span>
         {seeMoreBtn}
       </h3>
-      <SearchResult items={relatedItems} onClick={onItemClick}/>
+      <SearchResult
+        items={relatedItems}
+        onClick={onItemClick}
+        onSeeMoreClick={onSeeMoreClick}
+      />
       {seeMoreBtn}
     </aside>
   );

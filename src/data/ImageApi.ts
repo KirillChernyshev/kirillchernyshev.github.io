@@ -11,12 +11,14 @@ export class ImageApi {
   /**
    * Get images by query string
    * @param query Query string
+   * @param page Search result page number
    * @param itemsPerPage Max count of items per page
    */
-  public static async getItems(query: string, itemsPerPage = 30): Promise<IImageGetItemsResponse> {
+  public static async getItems(query: string, page: number, itemsPerPage = 30): Promise<IImageGetItemsResponse> {
     const response = await axios.get(this.apiEndpoint, {
       params: {
         key: this.apiKey,
+        page,
         per_page: itemsPerPage,
         q: query
       }
