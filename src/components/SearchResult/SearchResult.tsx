@@ -36,7 +36,7 @@ export default function SearchResult({
     );
   });
   
-  return (
+  return items.length > 0 ? (
     <div className='SearchResult' ref={rootRef} {...commonProps}>
       <ImageList
         cols={gridProps?.columns}
@@ -53,6 +53,15 @@ export default function SearchResult({
           See more
         </Button>
       </div>
+    </div>
+  ) : (
+    <div className='SearchResult' ref={rootRef} {...commonProps}>
+      <h3>
+        <div>
+          <div>Oops! There are no matches for your search.</div>
+          <div>Please try broadening your search.</div>
+        </div>
+      </h3>
     </div>
   );
 }

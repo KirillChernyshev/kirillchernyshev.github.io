@@ -26,6 +26,7 @@ export default function App() {
         : items.concat(response.hits);
       setItems(newItems);
     });
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [page, query]);
   
   /** search related images */

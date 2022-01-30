@@ -56,7 +56,6 @@ export default function DetailPanel({mainItem, onCloseClick, onItemClick, onSeeM
         onClick={onItemClick}
         onSeeMoreClick={onSeeMoreClick}
       />
-      {seeMoreBtn}
     </aside>
   );
 }
