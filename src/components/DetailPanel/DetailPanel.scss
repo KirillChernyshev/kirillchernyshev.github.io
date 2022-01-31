@@ -1,0 +1,65 @@
+@import '../../brandbook.scss';
+
+.DetailPanel {
+  flex: 1 1 50%;
+  flex-basis: 50%;
+  padding: 50px 8px 8px;
+  background-color: $fourthColor;
+  position: sticky;
+  top: 0px;
+  right: 0;
+  font-weight: 200;
+  overflow: scroll;
+  height: calc(100vh - 60px);
+  h3 {
+    border-top: 0.5px solid $thirdColor;
+    font-weight: inherit;
+    margin: 0;
+    padding: 10px 4px;
+    width: 100%;
+    font-size: 16px;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+.DetailPanel-desc {
+  padding: 4px;
+  display: flex;
+  justify-content: space-between;
+}
+.DetailPanel-tags {
+  font-size: 18px;
+  padding-right: 10px;
+}
+.DetailPanel-user {
+  color: $secondColorHover;
+}
+a.DetailPanel-visit {
+  padding: 4px 10px;
+  text-decoration: none;
+  color: $mainColor;
+  text-transform: uppercase;
+  font-size: 14px;
+  &:hover {
+    color: $secondColor;
+  }
+}
+button.DetailPanel-close {
+  position: absolute;
+  right: 5px;
+  top: 5px;
+  svg {
+    color: $mainColor;
+  }
+}
+.DetailPanel-mainItem {
+  margin: 0 4px;
+}
+button.DetailPanel-seeMore {
+  color: $mainColor;
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.04);
+  }
+}

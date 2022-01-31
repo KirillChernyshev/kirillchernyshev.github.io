@@ -1,0 +1,28 @@
+@import './brandbook.scss';
+
+html {
+  height: 100%;
+}
+body {
+  height: 100%;
+  margin: 0;
+  font-family: $fontFamily;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: $fifthColor;
+  color: $mainColor;
+  a {
+    text-decoration: none;
+    &:visited {
+      color: inherit;
+    }
+  }
+  & > div {
+    height: 100%;
+  }
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
