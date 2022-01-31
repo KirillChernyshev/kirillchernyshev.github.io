@@ -8,6 +8,9 @@ import OutlinedInput from "@mui/material/OutlinedInput";
 import Close from "@mui/icons-material/Close";
 import IconButton from "@mui/material/IconButton";
 
+/**
+ * Input with debounce implementation and search icon
+ */
 export default function SearchInput({delay = 400, onChange, query = ''}: ISearchInputProps) {
   const [text, setText] = useState(query);
   const [debounceValue] = useDebounce(text, delay);

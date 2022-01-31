@@ -1,6 +1,9 @@
 import React from 'react';
 import './Greeting.scss';
 
+/**
+ * Greeting message with type simulation
+ */
 export default function Greeting() {
   return (
     <div className='Greeting'>

@@ -5,6 +5,9 @@ import ImageListItem from '@mui/material/ImageListItem';
 import CardActionArea from '@mui/material/CardActionArea';
 import './ImageTile.scss';
 
+/**
+ * Image tile with caption
+ */
 export default function ImageTile(
   {addCaption = true, alt, height, id, onClick, src, width}: IImageTileProps
 ) {

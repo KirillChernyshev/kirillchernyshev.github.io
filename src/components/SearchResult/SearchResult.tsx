@@ -7,6 +7,9 @@ import { useGridProps } from '../../hooks/useGridProps';
 import Button from '@mui/material/Button';
 import ErrorMessage from '../ErrorMessage/ErrorMessage';
 
+/**
+ * Show grid of images and 'See more' link
+ */
 export default function SearchResult({
   gap = 4, hasHalfWidth = true, isMobile = true, itemData, onClick, onSeeMoreClick, ...commonProps
 }: ISearchResultProps) {

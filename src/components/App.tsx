@@ -11,12 +11,15 @@ import Greeting from './Greeting/Greeting';
 import useMobileDetect from '../hooks/useMobileDetect';
 
 export default function App() {
-  const [query, setQuery] = useState('');
-  const [page, setPage] = useState(1);
+  const [query, setQuery] = useState(''); // search query
+  const [page, setPage] = useState(1); // current request page
+  // SearchInput component key for setting new input value
   const [searchInputKey, setSearchInputKey] = useState('');
+  // main search data
   const [itemData, setItemData] = useState<IImageItemData>(
     ImageApi.getEmptyImageItemData()
   );
+  // search data for DetailPanel
   const [relatedItemData, setRelatedItemData] = useState<IImageItemData>(
     ImageApi.getEmptyImageItemData()
   );
@@ -37,7 +40,7 @@ export default function App() {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [page, query]);
   
-  /** search related images */
+  /** search images for DetailPanel */
   useEffect(() => {
     if (!selectedItem) {
       setRelatedItemData(ImageApi.getEmptyImageItemData());
@@ -53,9 +56,13 @@ export default function App() {
     setSelectedItem(null);
   }
 
-  const handleRelatedItemClick = (id: number) => {
+  const handleDetailPanelItemClick = (id: number) => {
     const item = relatedItemData.hits.filter(x => x.id === id)[0];
     setSelectedItem(item);
+  };
+
+  const handleMainSeeMoreClick = () => {
+    setPage(page + 1);
   };
 
   const handleSearchInputChange = (value: string) => {
@@ -71,10 +78,6 @@ export default function App() {
   const handleSearchResultClick = (id: number) => {
     const item = itemData.hits.filter(x => x.id === id)[0];
     setSelectedItem(item);
-  };
-
-  const handleMainSeeMoreClick = () => {
-    setPage(page + 1);
   };
 
   const handleSeeMoreClick = () => {
@@ -104,7 +107,7 @@ export default function App() {
     <DetailPanel
       mainItem={selectedItem}
       onCloseClick={handleDetailPanelClose}
-      onItemClick={handleRelatedItemClick}
+      onItemClick={handleDetailPanelItemClick}
       onSeeMoreClick={handleSeeMoreClick}
       relatedItemData={relatedItemData}
     />

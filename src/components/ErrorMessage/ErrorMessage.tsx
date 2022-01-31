@@ -2,6 +2,9 @@ import React from 'react';
 import './ErrorMessage.scss';
 import { IErrorMessageProps } from './IErrorMessageProps';
 
+/**
+ * Component for showing error message
+ */
 export default function ErrorMessage({message}: IErrorMessageProps) {
   return (
     <div className='ErrorMessage'>

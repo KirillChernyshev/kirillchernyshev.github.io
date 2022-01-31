@@ -4,7 +4,7 @@ import { IGridProps } from './useGridProps.types';
 /**
  * Get grid props for the object that is used as a container for a grid layout.
  * @param refObj Reference to the object
- * @param minColumnWidth Min column width
+ * @param minColumnWidth Min column width. Default value is 320.
  */
 export function useGridProps(
   refObj: React.RefObject<HTMLElement>,
