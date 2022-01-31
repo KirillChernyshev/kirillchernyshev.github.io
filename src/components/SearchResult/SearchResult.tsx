@@ -21,9 +21,12 @@ export default function SearchResult({
     const height = width 
       ? width / item.webformatWidth * item.webformatHeight
       : undefined;
-    const src = width && width < 400
-      ? item.webformatURL.replace('_640.', '_340.')
-      : item.webformatURL;
+    let src = item.webformatURL;
+    if (isMobile) {
+      src = item.webformatURL.replace('_640.', '_180.');
+    } else if (width && width <= 400) {
+      src = item.webformatURL.replace('_640.', '_340.')
+    }
       
     return (
       <ImageTile
