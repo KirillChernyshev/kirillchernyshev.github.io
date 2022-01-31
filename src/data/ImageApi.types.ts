@@ -42,6 +42,8 @@ export interface IImageItem {
 
 /** Image items with additional info */
 export interface IImageItemData {
+  /** error message if request failed */
+  error?: string;
   hits: IImageItem[];
   /** number of the last page that you can request */
   lastPage: number;

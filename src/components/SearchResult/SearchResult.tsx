@@ -5,6 +5,7 @@ import { ISearchResultProps } from './ISearchResultProps';
 import ImageTile from '../ImageTile/ImageTile';
 import { useGridProps } from '../../hooks/useGridProps';
 import Button from '@mui/material/Button';
+import ErrorMessage from '../ErrorMessage/ErrorMessage';
 
 export default function SearchResult({
   gap = 4, hasHalfWidth = true, isMobile = true, itemData, onClick, onSeeMoreClick, ...commonProps
@@ -47,8 +48,12 @@ export default function SearchResult({
       </Button>
     </div>
   ) : undefined;
+
+  const errorMessage = itemData.error ? (
+    <ErrorMessage message={itemData.error}/>
+  ) : undefined;
   
-  return itemData.hits.length > 0 ? (
+  return itemData.hits.length > 0 || !!itemData.error ? (
     <div className='SearchResult' ref={rootRef} {...commonProps}>
       <ImageList
         cols={gridProps?.columns}
@@ -58,6 +63,7 @@ export default function SearchResult({
         {tiles}
       </ImageList>
       {seeMoreBtn}
+      {errorMessage}
     </div>
   ) : (
     <div className='SearchResult' ref={rootRef} {...commonProps}>

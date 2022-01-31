@@ -27,20 +27,35 @@ export class ImageApi {
    */
   public static async getItems(query: string, page: number, itemsPerPage = 30)
     : Promise<IImageItemData> {
-    const response = await axios.get<IImageGetItemsResponse>(this.apiEndpoint, {
+    return axios.get<IImageGetItemsResponse>(this.apiEndpoint, {
       params: {
         key: this.apiKey,
         page,
         per_page: itemsPerPage,
         q: query
       }
+    }).then(response => {
+      const lastPage = Math.ceil(response.data.totalHits / itemsPerPage);
+  
+      return {
+        hits: response.data.hits,
+        lastPage,
+        requestedPage: page
+      }
+    }).catch(error => {
+      let errorText = '';
+      if (error.message) {
+        errorText = error.message;
+      } else if (error.response) {
+        errorText = error.response.data;
+      } else {
+        // Something happened in setting up the request that triggered an Error
+        console.error(error.message);
+      }
+      return {
+        error: errorText,
+        ...this.getEmptyImageItemData()
+      }
     });
-    const lastPage = Math.ceil(response.data.totalHits / itemsPerPage);
-
-    return {
-      hits: response.data.hits,
-      lastPage,
-      requestedPage: page
-    }
   }
 }
