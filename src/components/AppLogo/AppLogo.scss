@@ -7,6 +7,10 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  color: $fifthColor;
+  &:visited, &:active {
+    color: $fifthColor;
+  }
   div {
     position: relative;
     top: -2px;
