@@ -1,4 +1,4 @@
-/** Response of the ImageApi.getItems */
+/** Response of the Pixabay API */
 export interface IImageGetItemsResponse {
   /** Array of items */
   hits: IImageItem[];
@@ -38,4 +38,13 @@ export interface IImageItem {
   webformatURL: string;
   /** Width of image in webformatURL */
   webformatWidth: number;
+}
+
+/** Image items with additional info */
+export interface IImageItemData {
+  hits: IImageItem[];
+  /** number of the last page that you can request */
+  lastPage: number;
+  /** number of the last requested page */
+  requestedPage: number;
 }

@@ -1,9 +1,9 @@
-import { IImageItem } from "../../data/ImageApi.types";
+import { IImageItem, IImageItemData } from "../../data/ImageApi.types";
 
 export interface IDetailPanelProps {
   mainItem: IImageItem;
   onCloseClick: () => void;
   onItemClick: (id: number) => void;
   onSeeMoreClick: () => void;
-  relatedItems: IImageItem[];
+  relatedItemData: IImageItemData;
 }

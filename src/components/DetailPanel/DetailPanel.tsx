@@ -8,7 +8,9 @@ import CloseIcon from '@mui/icons-material/Close';
 import Button from '@mui/material/Button';
 import Link from '@mui/material/Link';
 
-export default function DetailPanel({mainItem, onCloseClick, onItemClick, onSeeMoreClick, relatedItems}: IDetailPanelProps) {
+export default function DetailPanel({
+  mainItem, onCloseClick, onItemClick, onSeeMoreClick, relatedItemData
+}: IDetailPanelProps) {
   const mainItemRef = useRef<HTMLDivElement>(null);
   const mainItemWidth = mainItemRef.current?.offsetWidth;
   const mainItemHeight = mainItemWidth 
@@ -58,7 +60,7 @@ export default function DetailPanel({mainItem, onCloseClick, onItemClick, onSeeM
         {seeMoreBtn}
       </h3>
       <SearchResult
-        items={relatedItems}
+        itemData={relatedItemData}
         onClick={onItemClick}
         onSeeMoreClick={onSeeMoreClick}
       />

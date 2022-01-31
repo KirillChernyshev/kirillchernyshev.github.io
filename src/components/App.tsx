@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { ImageApi } from '../data/ImageApi';
-import { IImageItem } from '../data/ImageApi.types';
+import { IImageItem, IImageItemData } from '../data/ImageApi.types';
 import './App.scss';
 import SearchResult from './SearchResult/SearchResult';
 import SearchInput from './SearchInput/SearchInput';
@@ -14,8 +14,12 @@ export default function App() {
   const [query, setQuery] = useState('');
   const [page, setPage] = useState(1);
   const [searchInputKey, setSearchInputKey] = useState('');
-  const [items, setItems] = useState<IImageItem[]>([]);
-  const [relatedItems, setRelatedItems] = useState<IImageItem[]>([]);
+  const [itemData, setItemData] = useState<IImageItemData>(
+    ImageApi.getEmptyImageItemData()
+  );
+  const [relatedItemData, setRelatedItemData] = useState<IImageItemData>(
+    ImageApi.getEmptyImageItemData()
+  );
   const [selectedItem, setSelectedItem] = useState<IImageItem | null>(null);
   const isMobile = useMobileDetect();
 
@@ -24,22 +28,24 @@ export default function App() {
     if (query === '') return;
 
     ImageApi.getItems(query, page).then(response => {
-      const newItems = page === 1 ? response.hits 
-        : items.concat(response.hits);
-      setItems(newItems);
+      if (page > 1) {
+        response.hits = itemData.hits.concat(response.hits);
+      }
+      setItemData(response);
     });
+  // disable eslint rule for excluding 'itemData' from dependencies
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [page, query]);
   
   /** search related images */
   useEffect(() => {
     if (!selectedItem) {
-      setRelatedItems([]);
+      setRelatedItemData(ImageApi.getEmptyImageItemData());
       return;
     }
 
     ImageApi.getItems(selectedItem.tags, 1, 9).then(response => {
-      setRelatedItems(response.hits);
+      setRelatedItemData(response);
     })
   }, [selectedItem]);
   
@@ -48,7 +54,7 @@ export default function App() {
   }
 
   const handleRelatedItemClick = (id: number) => {
-    const item = relatedItems.filter(x => x.id === id)[0];
+    const item = relatedItemData.hits.filter(x => x.id === id)[0];
     setSelectedItem(item);
   };
 
@@ -63,7 +69,7 @@ export default function App() {
   }
 
   const handleSearchResultClick = (id: number) => {
-    const item = items.filter(x => x.id === id)[0];
+    const item = itemData.hits.filter(x => x.id === id)[0];
     setSelectedItem(item);
   };
 
@@ -84,7 +90,8 @@ export default function App() {
   const searchResult = query && (!selectedItem || !isMobile) ? (
     <SearchResult
       hasHalfWidth={!!selectedItem}
-      items={items}
+      isMobile={isMobile}
+      itemData={itemData}
       onClick={handleSearchResultClick}
       onSeeMoreClick={handleMainSeeMoreClick}
       style={!!selectedItem ? {width: '50%'} : undefined}
@@ -99,7 +106,7 @@ export default function App() {
       onCloseClick={handleDetailPanelClose}
       onItemClick={handleRelatedItemClick}
       onSeeMoreClick={handleSeeMoreClick}
-      relatedItems={relatedItems}
+      relatedItemData={relatedItemData}
     />
   ) : undefined;
 
