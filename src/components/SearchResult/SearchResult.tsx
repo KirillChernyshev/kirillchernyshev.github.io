@@ -39,9 +39,9 @@ export default function SearchResult({
   });
 
   const seeMoreBtn = itemData.requestedPage < itemData.lastPage ? (
-    <div className='SearchResult--seeMore-container'>
+    <div className='SearchResult-seeMore-container'>
       <Button
-        className='SearchResult--seeMore'
+        className='SearchResult-seeMore'
         onClick={onSeeMoreClick}
       >
         See more

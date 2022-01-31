@@ -29,7 +29,7 @@ export default function SearchInput({delay = 400, onChange, query = ''}: ISearch
   return (
     <div className="SearchInput">
       <OutlinedInput
-        className="SearchInput--control"
+        className="SearchInput-control"
         fullWidth
         onChange={handleChange}
         placeholder="Type and search Images"

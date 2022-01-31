@@ -7,7 +7,7 @@ import './PixabayLogo.scss';
 export default function PixabayLogo() {
   return (
     <div className='PixabayLogo'>
-      <span className='PixabayLogo--text'>Powered by </span>
+      <span className='PixabayLogo-text'>Powered by </span>
       <a href="https://pixabay.com/">
         <i>
           <img

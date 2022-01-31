@@ -19,7 +19,7 @@ export default function DetailPanel({
   
   const seeMoreBtn = (
     <Button
-      className='DetailPanel--seeMore'
+      className='DetailPanel-seeMore'
       onClick={onSeeMoreClick}
     >
       See more
@@ -28,10 +28,10 @@ export default function DetailPanel({
   
   return (
     <aside className='DetailPanel'>
-      <IconButton aria-label="delete" className='DetailPanel--close' onClick={onCloseClick}>
+      <IconButton aria-label="delete" className='DetailPanel-close' onClick={onCloseClick}>
         <CloseIcon />
       </IconButton>
-      <div className='DetailPanel--mainItem' ref={mainItemRef}>
+      <div className='DetailPanel-mainItem' ref={mainItemRef}>
         <ImageTile
           addCaption={false}
           alt={mainItem.tags}
@@ -41,13 +41,13 @@ export default function DetailPanel({
           width={mainItemWidth}
         />
       </div>
-      <div className='DetailPanel--desc'>
+      <div className='DetailPanel-desc'>
         <div>
-          <span className='DetailPanel--tags'>{mainItem.tags}</span>
-          <span className='DetailPanel--user'>by {mainItem.user}</span>
+          <span className='DetailPanel-tags'>{mainItem.tags}</span>
+          <span className='DetailPanel-user'>by {mainItem.user}</span>
         </div>
         <Link
-          className='DetailPanel--visit'
+          className='DetailPanel-visit'
           href={mainItem.pageURL}
           target='_blank'
           title='Open source in new tab'

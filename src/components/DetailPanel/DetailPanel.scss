@@ -24,19 +24,19 @@
     justify-content: space-between;
   }
 }
-.DetailPanel--desc {
+.DetailPanel-desc {
   padding: 4px;
   display: flex;
   justify-content: space-between;
 }
-.DetailPanel--tags {
+.DetailPanel-tags {
   font-size: 18px;
   padding-right: 10px;
 }
-.DetailPanel--user {
+.DetailPanel-user {
   color: $secondColorHover;
 }
-a.DetailPanel--visit {
+a.DetailPanel-visit {
   padding: 4px 10px;
   text-decoration: none;
   color: $mainColor;
@@ -46,7 +46,7 @@ a.DetailPanel--visit {
     color: $secondColor;
   }
 }
-button.DetailPanel--close {
+button.DetailPanel-close {
   position: absolute;
   right: 5px;
   top: 5px;
@@ -54,10 +54,10 @@ button.DetailPanel--close {
     color: $mainColor;
   }
 }
-.DetailPanel--mainItem {
+.DetailPanel-mainItem {
   margin: 0 4px;
 }
-button.DetailPanel--seeMore {
+button.DetailPanel-seeMore {
   color: $mainColor;
   &:hover {
     background-color: rgba(0, 0, 0, 0.04);

@@ -15,13 +15,13 @@
     font-weight: 200;
   }
 }
-.SearchResult--seeMore-container {
+.SearchResult-seeMore-container {
   text-align: center;
   button {
     width: 100%;
   }
 }
-button.SearchResult--seeMore {
+button.SearchResult-seeMore {
   color: $mainColor;
   &:hover {
     background-color: rgba(0, 0, 0, 0.04);
