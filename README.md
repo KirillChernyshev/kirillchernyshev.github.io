@@ -1,7 +1,10 @@
-# Getting Started with Create React App
+# Seek Photo 
+This is a simple site for searching photos. It uses [Pixabay.com](https://pixabay.com/api/docs/) API for searching. I hope you enjoy it! 🚀
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+If you have a problem feel free to create an issue.
 
+## Getting Started
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app). The following script information copied from it.
 ## Available Scripts
 
 In the project directory, you can run:
