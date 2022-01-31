@@ -12,3 +12,9 @@
     top: -2px;
   }
 }
+
+@media screen and (max-width: $mobileMaxWidth) {
+  .AppLogo {
+    font-size: 18px;
+  }
+}

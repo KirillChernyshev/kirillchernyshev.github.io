@@ -7,10 +7,11 @@ import { useGridProps } from '../../hooks/useGridProps';
 import Button from '@mui/material/Button';
 
 export default function SearchResult({
-  gap = 4, hasHalfWidth = true, items, onClick, onSeeMoreClick, ...commonProps
+  gap = 4, hasHalfWidth = true, isMobile = true, items, onClick, onSeeMoreClick, ...commonProps
 }: ISearchResultProps) {
   const rootRef = useRef<HTMLDivElement>(null);
-  const [gridProps, setGridProps] = useGridProps(rootRef, hasHalfWidth ? 200 : 320);
+  const minColumnWidth = hasHalfWidth || isMobile ? 175 : 320;
+  const [gridProps, setGridProps] = useGridProps(rootRef, minColumnWidth);
 
   useEffect(() => setGridProps(), [hasHalfWidth, setGridProps]);
 

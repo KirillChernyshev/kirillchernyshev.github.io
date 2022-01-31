@@ -8,6 +8,7 @@ import PixabayLogo from './PixabayLogo/PixabayLogo';
 import DetailPanel from './DetailPanel/DetailPanel';
 import AppLogo from './AppLogo/AppLogo';
 import Greeting from './Greeting/Greeting';
+import useMobileDetect from '../hooks/useMobileDetect';
 
 export default function App() {
   const [query, setQuery] = useState('');
@@ -16,6 +17,7 @@ export default function App() {
   const [items, setItems] = useState<IImageItem[]>([]);
   const [relatedItems, setRelatedItems] = useState<IImageItem[]>([]);
   const [selectedItem, setSelectedItem] = useState<IImageItem | null>(null);
+  const isMobile = useMobileDetect();
 
   /** search images */
   useEffect(() => {
@@ -78,6 +80,18 @@ export default function App() {
       window.scrollTo(0, 0);
     }
   };
+
+  const searchResult = query && (!selectedItem || !isMobile) ? (
+    <SearchResult
+      hasHalfWidth={!!selectedItem}
+      items={items}
+      onClick={handleSearchResultClick}
+      onSeeMoreClick={handleMainSeeMoreClick}
+      style={!!selectedItem ? {width: '50%'} : undefined}
+    />
+  ) : undefined;
+
+  const greeting = !query ? <Greeting/> : undefined;
   
   const detailPanel = !!selectedItem ? (
     <DetailPanel
@@ -96,17 +110,9 @@ export default function App() {
         <SearchInput key={searchInputKey} onChange={handleSearchInputChange} query={query}/>
       </header>
       <main>
-        {query ? (
-          <SearchResult
-            hasHalfWidth={!!selectedItem}
-            items={items}
-            onClick={handleSearchResultClick}
-            onSeeMoreClick={handleMainSeeMoreClick}
-            style={!!selectedItem ? {width: '50%'} : undefined}
-          />
-        ) 
-        : <Greeting/>}
+        {searchResult}
         {detailPanel}
+        {greeting}
       </main>
       <footer>
         <PixabayLogo/>

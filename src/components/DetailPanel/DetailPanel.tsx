@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import './DetailPanel.scss';
 import ImageTile from '../ImageTile/ImageTile';
 import SearchResult from '../SearchResult/SearchResult';
@@ -9,6 +9,12 @@ import Button from '@mui/material/Button';
 import Link from '@mui/material/Link';
 
 export default function DetailPanel({mainItem, onCloseClick, onItemClick, onSeeMoreClick, relatedItems}: IDetailPanelProps) {
+  const mainItemRef = useRef<HTMLDivElement>(null);
+  const mainItemWidth = mainItemRef.current?.offsetWidth;
+  const mainItemHeight = mainItemWidth 
+    ? mainItemWidth / mainItem.webformatWidth * mainItem.webformatHeight :
+    undefined;
+  
   const seeMoreBtn = (
     <Button
       className='DetailPanel--seeMore'
@@ -23,14 +29,14 @@ export default function DetailPanel({mainItem, onCloseClick, onItemClick, onSeeM
       <IconButton aria-label="delete" className='DetailPanel--close' onClick={onCloseClick}>
         <CloseIcon />
       </IconButton>
-      <div className='DetailPanel--mainItem'>
+      <div className='DetailPanel--mainItem' ref={mainItemRef}>
         <ImageTile
           addCaption={false}
           alt={mainItem.tags}
-          height={mainItem.webformatHeight}
+          height={mainItemHeight}
           id={mainItem.id}
           src={mainItem.webformatURL}
-          width={mainItem.webformatWidth}
+          width={mainItemWidth}
         />
       </div>
       <div className='DetailPanel--desc'>
